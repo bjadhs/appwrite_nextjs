@@ -1,4 +1,5 @@
 'use client';
+import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
 type Todos = {
@@ -21,16 +22,20 @@ const TodosApp = () => {
     setTask('');
   };
   return (
-    <div>
-      <h1>My Todos</h1>
-      <form onSubmit={addTodo}>
+    <div className='border rounded-lg border-gray-300 p-4 max-h-screen'>
+      <h1 className='text-xl font-medium'>My Todos</h1>
+      <hr />
+      <form onSubmit={addTodo} className='my-4'>
         <input
           type='text'
           placeholder='My chores'
           value={task}
           onChange={(e) => setTask(e.target.value)}
+          className='border rounded-lg border-gray-300 p-2 mr-2'
         />
-        <button type='submit'>Add Todo</button>
+        <Button variant='outline' type='submit'>
+          Add Todo
+        </Button>
       </form>
       <ul>
         {todos.map((todo) => (

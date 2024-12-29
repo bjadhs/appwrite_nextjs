@@ -1,10 +1,10 @@
 import { ID } from 'appwrite';
-import { appwriteConfig, account, databases } from './appwrite';
-import { IUser } from '@/types';
+import { account } from './appwrite';
+import { IUser, INewUser } from '@/types';
 
-export const createUserAccount = async (user: IUser) => {
+export const createUserAccount = async (user: INewUser) => {
   try {
-    await account.create(ID.unique(), user.email, user.password, user.name);
+    await account.create(ID.unique(), user.email, user.password);
     if (!user) throw new Error('Failed to create user account');
   } catch (err) {
     console.log(err);
@@ -22,6 +22,6 @@ export const logoutUser = async () => {
   try {
     await account.deleteSession('current');
   } catch (err) {
-    console.log(err);
+    console.log(`Error bj: ${err}`);
   }
 };
